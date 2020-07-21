@@ -39,7 +39,7 @@ node{
    }
       stage ('Start Tomcat Server') {
          //sleep(time:5,unit:"SECONDS") 
-         sh "${tomcatBin}/startup.sh"
+         sh "sudo ${tomcatBin}/startup.sh"
         // sleep(time:100,unit:"SECONDS")
    }
 }
