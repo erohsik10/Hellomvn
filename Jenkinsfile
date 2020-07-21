@@ -9,13 +9,13 @@ node{
    stage('Compile'){
       // Get maven home path
       def mvnHome = '/opt/apache-maven-3.6.3'  name: 'maven-3', type: 'maven'   
-      sh "$ {mvnHome}/bin/mvn clean"
-      sh "$ {mvnHome}/bin/mvn compile"
+      sh "${mvnHome}/bin/mvn clean"
+      sh "${mvnHome}/bin/mvn compile"
       }
    stage('Test'){
       // Get maven home path
       def mvnHome =  tool name: 'maven-3', type: 'maven'   
-      sh "$ {mvnHome}/bin/mvn test"
+      sh "${mvnHome}/bin/mvn test"
       
       }
 /*   stage ('Stop Tomcat Server') {
