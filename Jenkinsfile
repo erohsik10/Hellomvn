@@ -8,15 +8,18 @@ node{
    }
    stage('Compile'){
       // Get maven home path
-      def mvnHome = '/opt/apache-maven-3.6.3'  name: 'maven-3', type: 'maven'   
-      sh "${mvnHome}/bin/mvn clean"
-      sh "${mvnHome}/bin/mvn compile"
-      }
+      //def mvnHome = tool  name: 'maven-3', type: 'maven'   
+      def mvn_version = 'maven-3'
+      withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
+      sh "mvn clean"
+      sh "mvn compile"
+      }}
    stage('Test'){
       // Get maven home path
-      def mvnHome =  tool name: 'maven-3', type: 'maven'   
-      sh "${mvnHome}/bin/mvn test"
-      
+      //def mvnHome =  tool name: 'maven-3', type: 'maven'   
+      withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
+      sh "mvn test"
+      }
       }
 /*   stage ('Stop Tomcat Server') {
                bat ''' @ECHO OFF
