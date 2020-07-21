@@ -8,14 +8,14 @@ node{
    }
    stage('Compile'){
       // Get maven home path
-      //def mvnHome =  tool name: 'maven-3', type: 'maven'   
-      sh "$ /opt/apache-maven-3.6.3/bin/mvn clean"
-      sh "$ /opt/apache-maven-3.6.3/bin/mvn compile"
+      def mvnHome =  tool name: 'maven-3', type: 'maven'   
+      sh "$ {mvnHome}/bin/mvn clean"
+      sh "$ {mvnHome}/bin/mvn compile"
       }
    stage('Test'){
       // Get maven home path
-      //def mvnHome =  tool name: 'maven-3', type: 'maven'   
-      sh "$ /opt/apache-maven-3.6.3/bin/mvn test"
+      def mvnHome =  tool name: 'maven-3', type: 'maven'   
+      sh "$ {mvnHome}/bin/mvn test"
       
       }
 /*   stage ('Stop Tomcat Server') {
@@ -31,11 +31,11 @@ node{
 '''
    }*/
    stage('Deploy to Tomcat'){
-     sh "cp target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\""
+     sh "cp target\\HelloHello.war "${tomcatWeb}/HelloHello.war""
    }
       stage ('Start Tomcat Server') {
-         sleep(time:5,unit:"SECONDS") 
-         bat "${tomcatBin}\\startup.bat"
-         sleep(time:100,unit:"SECONDS")
+         //sleep(time:5,unit:"SECONDS") 
+         sh "${tomcatBin}/startup.sh"
+        // sleep(time:100,unit:"SECONDS")
    }
 }
