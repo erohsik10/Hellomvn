@@ -31,7 +31,7 @@ node{
 '''
    }*/
    stage('Deploy to Tomcat'){
-     sh "cp target\\HelloHello.war "${tomcatWeb}/HelloHello.war""
+     sh "cp target\\HelloHello.war ${tomcatWeb}/HelloHello.war"
    }
       stage ('Start Tomcat Server') {
          //sleep(time:5,unit:"SECONDS") 
