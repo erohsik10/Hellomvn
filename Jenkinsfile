@@ -6,10 +6,17 @@ node{
    stage('SCM Checkout'){
      git 'https://github.com/lapulga101010/Hellomvn.git'
    }
-   stage('Compile-Package-create-war-file'){
+   stage('Compile'){
       // Get maven home path
-      def mvnHome =  tool name: 'maven-3', type: 'maven'   
-      bat "${mvnHome}/bin/mvn package"
+      //def mvnHome =  tool name: 'maven-3', type: 'maven'   
+      sh "$ /opt/apache-maven-3.6.3/bin/mvn clean"
+      sh "$ /opt/apache-maven-3.6.3/bin/mvn compile"
+      }
+   stage('Test'){
+      // Get maven home path
+      //def mvnHome =  tool name: 'maven-3', type: 'maven'   
+      sh "$ /opt/apache-maven-3.6.3/bin/mvn test"
+      
       }
 /*   stage ('Stop Tomcat Server') {
                bat ''' @ECHO OFF
@@ -24,7 +31,7 @@ node{
 '''
    }*/
    stage('Deploy to Tomcat'){
-     bat "copy target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\""
+     sh "cp target\\JenkinsWar.war \"${tomcatWeb}\\JenkinsWar.war\""
    }
       stage ('Start Tomcat Server') {
          sleep(time:5,unit:"SECONDS") 
