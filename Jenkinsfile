@@ -35,7 +35,7 @@ node{
 '''
    }*/
    stage('Deploy to Tomcat'){
-     sh "sudo cp target/HelloHello.war ${tomcatWeb}/HelloHello.war"
+     sh "sudo cp ~/.m2/repository/HelloHello.war ${tomcatWeb}/HelloHello.war"
    }
       stage ('Start Tomcat Server') {
          //sleep(time:5,unit:"SECONDS") 
