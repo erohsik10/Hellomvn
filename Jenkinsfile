@@ -17,6 +17,7 @@ node{
    stage('Test'){
       // Get maven home path
       //def mvnHome =  tool name: 'maven-3', type: 'maven'   
+      def mvn_version = 'maven-3'
       withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
       sh "mvn test"
       }
