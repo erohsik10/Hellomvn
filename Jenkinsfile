@@ -39,7 +39,7 @@ node{
       withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
       sh "mvn package"
       //sh "sudo cp ~/.m2/repository/HelloHello.war ${tomcatWeb}/HelloHello.war"
-   }
+      }}
      /* stage ('Start Tomcat Server') {
          //sleep(time:5,unit:"SECONDS") 
          sh "sudo ${tomcatBin}/startup.sh"
