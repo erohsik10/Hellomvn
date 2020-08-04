@@ -35,11 +35,14 @@ node{
 '''
    }*/
    stage('Deploy to Tomcat'){
-     sh "sudo cp ~/.m2/repository/HelloHello.war ${tomcatWeb}/HelloHello.war"
+     def mvn_version = 'maven-3'
+      withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
+      sh "mvn package"
+      //sh "sudo cp ~/.m2/repository/HelloHello.war ${tomcatWeb}/HelloHello.war"
    }
-      stage ('Start Tomcat Server') {
+     /* stage ('Start Tomcat Server') {
          //sleep(time:5,unit:"SECONDS") 
          sh "sudo ${tomcatBin}/startup.sh"
         // sleep(time:100,unit:"SECONDS")
-   }
+   }*/
 }
