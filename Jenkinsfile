@@ -19,7 +19,7 @@ node{
       //def mvnHome =  tool name: 'maven-3', type: 'maven'   
       def mvn_version = 'maven-3'
       withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
-      sh "mvn test"
+      sh "mvn -Dtest=TestAssertion test"
       }
       }
 /*   stage ('Stop Tomcat Server') {
